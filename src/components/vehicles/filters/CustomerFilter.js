@@ -12,7 +12,7 @@ function CustomerFilter(props) {
       <label className="label label-default">by Customer:</label>
 
       <select className="form-control" onChange={props.callback}>
-        <option></option>
+        <option key='0'></option>
         {customers.map(_customer => {
           return (
             <option key={_customer.id} value={_customer.id}>{_customer.first_name} {_customer.last_name}</option>
