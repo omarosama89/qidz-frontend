@@ -1,6 +1,7 @@
 import { EventEmitter } from 'events';
 import Dispatcher from '../appDispatcher';
 import actionTypes from '../actions/actionTypes';
+import { toast } from 'react-toastify';
 const CHANGE_EVENT = "change";
 let _vehicles = [];
 class VehicleStore extends EventEmitter {
@@ -41,6 +42,7 @@ Dispatcher.register(action => {
             break;
         case actionTypes.VEHICLE_UPDATED:
             updateVehicleById(action.vehicle);
+            toast.success(`vehicle #${action.vehicle.vehicle_id} has been updated`)
             store.emitChange();
             break;
         default:
