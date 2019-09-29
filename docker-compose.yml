@@ -1,0 +1,83 @@
+version: '3'
+
+services:
+
+  customers_db:
+    image: postgres
+    environment:
+      POSTGRES_DB: 'customers'
+      POSTGRES_USER: 'customersuser'
+      POSTGRES_PASSWORD: 123
+      POSTGRES_HOST: 'customers_web'
+      POSTGRES_PORT: '5432'
+
+  customers_web:
+    build:
+      context: backends/alten-customers
+      dockerfile: Dockerfile
+    entrypoint: sh ./entry-point.sh
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backends/alten-customers/:/customers_code
+    ports:
+      - "8001:8000"
+    depends_on:
+      - customers_db
+    environment:
+      DJANGO_SETTINGS_MODULE: 'customers.settings'
+      DOCKER_DB_HOSTNAME: 'customers_db'
+      DOCKER_VEHICLES_API_HOSTNAME: 'vehiclesweb'
+
+  vehicles_db:
+    image: postgres
+    environment:
+      POSTGRES_DB: 'vehicles'
+      POSTGRES_USER: 'vehiclesuser'
+      POSTGRES_PASSWORD: '123'
+      POSTGRES_HOST: 'vehicles_web'
+      POSTGRES_PORT: '5432'
+
+  vehiclesweb:
+    build:
+      context: backends/alten-vehicles
+      dockerfile: Dockerfile
+    entrypoint: sh ./entry-point.sh
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backends/alten-vehicles/:/vehicles_code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - vehicles_db
+      - realtime
+    environment:
+      DJANGO_SETTINGS_MODULE: 'vehicles.settings'
+      DOCKER_DB_HOSTNAME: 'vehicles_db'
+      DOCKER_REALTIME_HOSTNAME: 'realtime'
+
+  realtime:
+    build:
+      context: alten-realtime
+      dockerfile: Dockerfile
+    #    entrypoint: sh ./entry-point.sh
+    command: npm start 3001
+    volumes:
+      - ./alten-realtime/:/realtime_code
+    ports:
+      - "3001:3001"
+
+  frontend:
+    build:
+      context: alten-frontend
+      dockerfile: Dockerfile
+#    entrypoint: sh ./entry-point.sh
+    command: npm start
+    volumes:
+      - ./alten-frontend/:/frontend_code
+    ports:
+      - "3000:3000"
+    depends_on:
+#      - realtime
+      - customers_web
+      - vehiclesweb
+
