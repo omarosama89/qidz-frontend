@@ -1,7 +1,10 @@
 import { handleResponse, handleError } from "./apiUtils";
-// const baseUrl = process.env.REACT_APP_API_URL + "/server/vehicles";
-const URL = "http://localhost:8001";
+import * as config from '../config'
+
+const URL = config.default['CUSTOMERS_HOST'];
 const CustomerBaseUrl = URL + "/server/customers";
+
+
 
 export function getCustomers() {
   return fetch(CustomerBaseUrl)

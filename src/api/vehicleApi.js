@@ -1,6 +1,7 @@
 import { handleResponse, handleError } from "./apiUtils";
-// const baseUrl = process.env.REACT_APP_API_URL + "/server/courses";
-const URL = "http://localhost:8000";
+import * as config from '../config'
+
+const URL = config.default['VEHICLES_HOST']
 const vehicleBaseUrl = URL + "/server/vehicles";
 const CustomerBaseUrl = URL + "/server/customers";
 
