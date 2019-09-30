@@ -6,9 +6,12 @@ if (process.env['NODE_ENV'] == 'production') {
     customers_host = 'http://alten-customers-dev.us-west-2.elasticbeanstalk.com';
     realtime_host = 'http://alten-realtime-dev.us-west-2.elasticbeanstalk.com'
 } else {
-    vehicles_host = 'http://localhost:8000';
-    customers_host = 'http://localhost:8001';
-    realtime_host = 'http://llocalhost:3001';
+    vehicles_host = 'http://vehicles-app.us-west-2.elasticbeanstalk.com';
+    customers_host = 'http://alten-customers-dev.us-west-2.elasticbeanstalk.com';
+    realtime_host = 'http://alten-realtime-dev.us-west-2.elasticbeanstalk.com'
+    // vehicles_host = 'http://localhost:8000';
+    // customers_host = 'http://localhost:8001';
+    // realtime_host = 'http://llocalhost:3001';
 }
 export default {
     VEHICLES_HOST: vehicles_host,
