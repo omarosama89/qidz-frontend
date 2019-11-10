@@ -1,6 +1,6 @@
 import React from "react";
-import CustomersIndexPage from "./customers/IndexPage";
-import VehiclesIndexPage from "./vehicles/IndexPage";
+import MoviesIndexPage from "./movies/IndexPage";
+import ReviewsIndexPage from "./reviews/IndexPage";
 import Header from "./common/Header";
 import NotFoundPage from "./NotFoundPage";
 import { Route, Switch } from "react-router-dom";
@@ -18,8 +18,8 @@ function App() {
           </div>
           <div className="column middle">
             <Switch>
-              <Route path="/" exact component={CustomersIndexPage} />
-              <Route path="/vehicles" exact component={VehiclesIndexPage} />
+              <Route path="/" exact component={MoviesIndexPage} />
+              <Route path="/vehicles" exact component={ReviewsIndexPage} />
               <Route component={NotFoundPage} />
             </Switch>
           </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getCustomers } from "../../../api/vehicleApi";
+import { getCustomers } from "../../../api/reviewsApi";
 
 function CustomerFilter(props) {
   const [customers, setCustomers] = useState([]);

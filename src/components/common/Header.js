@@ -10,12 +10,12 @@ function Header() {
       <ul className="nav">
         <li className="current col-md-12">
           <NavLink activeStyle={activeStyle} to="/" exact>
-            <i className="glyphicon glyphicon-user"></i> Customers
+            <i className="glyphicon glyphicon-user"></i> Movies
           </NavLink>
         </li>
         <li className="current col-md-12">
           <NavLink activeStyle={activeStyle} to="/vehicles">
-            <i className="glyphicon glyphicon-road"></i> Vehicles
+            <i className="glyphicon glyphicon-road"></i> Reviews
           </NavLink>
         </li>
       </ul>

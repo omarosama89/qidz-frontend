@@ -1,18 +1,17 @@
 import { handleResponse, handleError } from "./apiUtils";
 import * as config from '../config'
 
-const URL = config.default['VEHICLES_HOST']
-const vehicleBaseUrl = URL + "/server/vehicles";
-const CustomerBaseUrl = URL + "/server/customers";
+const URL = config.default['HOST']
+const baseUrl = URL + "/reviews";
 
-export function getVehicles(status, customerId) {
-  return fetch(injectParamsInUrl(vehicleBaseUrl, { status: status, customer_id: customerId }))
+export function getReviews(status, customerId) {
+  return fetch(injectParamsInUrl(baseUrl, { status: status, customer_id: customerId }))
     .then(handleResponse)
     .catch(handleError);
 }
 
 export function getCustomers() {
-  return fetch(CustomerBaseUrl)
+  return fetch(baseUrl)
     .then(handleResponse)
     .catch(handleError);
 }
